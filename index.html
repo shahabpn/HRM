@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRM — Human Relationship Manager | Turn Your Database Into Referral Income</title>
+  <meta name="description" content="HRM is the relationship layer your CRM is missing. Built for real estate agents who want predictable referral income from their existing database.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral: #F2613F;
+      --coral-light: #FF8A6A;
+      --coral-dark: #D94E32;
+      --coral-bg: #FFF5F2;
+      --orange: #F59E0B;
+      --orange-light: #FCD34D;
+      --teal: #0D9488;
+      --teal-light: #5EEAD4;
+      --green: #22C55E;
+      --red: #EF4444;
+      --gray-50: #FAFAFA;
+      --gray-100: #F5F5F5;
+      --gray-200: #E5E5E5;
+      --gray-300: #D4D4D4;
+      --gray-400: #A3A3A3;
+      --gray-500: #737373;
+      --gray-600: #525252;
+      --gray-700: #404040;
+      --gray-800: #262626;
+      --gray-900: #171717;
+      --white: #FFFFFF;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-full: 9999px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--gray-800);
+      line-height: 1.6;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 16px 0;
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--coral);
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--gray-800); }
+    .nav-cta {
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font);
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--coral-dark); transform: translateY(-1px); }
+
+    /* HERO */
+    .hero {
+      padding: 140px 0 80px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--coral-bg) 0%, var(--white) 100%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-full);
+      padding: 6px 16px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--coral);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--gray-900);
+      margin-bottom: 20px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 .accent { color: var(--coral); }
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .waitlist-form {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 440px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-full);
+      padding: 6px 6px 6px 20px;
+      box-shadow: var(--shadow-lg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .waitlist-form:focus-within {
+      border-color: var(--coral-light);
+      box-shadow: var(--shadow-lg), 0 0 0 3px rgba(242,97,63,0.1);
+    }
+    .waitlist-form input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 0.9375rem;
+      font-family: var(--font);
+      color: var(--gray-800);
+      background: transparent;
+    }
+    .waitlist-form input::placeholder { color: var(--gray-400); }
+    .waitlist-form button {
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font);
+      white-space: nowrap;
+    }
+    .waitlist-form button:hover { background: var(--coral-dark); }
+    .waitlist-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .waitlist-msg {
+      margin-top: 12px;
+      font-size: 0.8125rem;
+      min-height: 20px;
+    }
+    .waitlist-msg.success { color: var(--teal); }
+    .waitlist-msg.error { color: var(--red); }
+    .hero-social-proof {
+      margin-top: 48px;
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+    }
+
+    /* PROBLEM */
+    .problem {
+      padding: 100px 0;
+    }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--coral);
+      margin-bottom: 12px;
+    }
+    .problem h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--gray-900);
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+    .problem > .container > p {
+      font-size: 1.0625rem;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .pain-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: all 0.2s;
+    }
+    .pain-card:hover {
+      border-color: var(--coral-light);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .pain-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--coral-bg);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+    .pain-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 8px;
+    }
+    .pain-card p {
+      font-size: 0.875rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    /* SOLUTION PILLARS */
+    .solution {
+      padding: 100px 0;
+      background: var(--gray-50);
+    }
+    .solution .section-label { text-align: center; }
+    .solution h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .solution > .container > p {
+      font-size: 1.0625rem;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin: 0 auto 56px;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .pillar {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 36px 28px;
+      transition: all 0.2s;
+    }
+    .pillar:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+    .pillar-number {
+      width: 32px;
+      height: 32px;
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .pillar h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+    .pillar p {
+      font-size: 0.9375rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* INTERACTIVE DEMO */
+    .demo {
+      padding: 100px 0;
+    }
+    .demo .section-label { text-align: center; }
+    .demo > .container > h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .demo > .container > p {
+      font-size: 1.0625rem;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin: 0 auto 48px;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* Mock App Shell */
+    .app-shell {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .app-titlebar {
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .app-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gray-300);
+    }
+    .app-dot.r { background: #FF5F57; }
+    .app-dot.y { background: #FEBC2E; }
+    .app-dot.g { background: #28C840; }
+    .app-titlebar-text {
+      flex: 1;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      font-weight: 500;
+    }
+
+    /* Contact Profile Header */
+    .profile-header {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .profile-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--coral), var(--coral-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.25rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .profile-info { flex: 1; }
+    .profile-info h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+    .profile-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .profile-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-advocacy { background: #ECFDF5; color: #059669; }
+    .badge-segment { background: #EFF6FF; color: #2563EB; }
+    .profile-scores {
+      display: flex;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .score-ring {
+      width: 56px;
+      height: 56px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-ring svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .score-ring .value {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    .score-label {
+      font-size: 0.625rem;
+      color: var(--gray-400);
+      text-align: center;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /* Mackay 66 Categories */
+    .mackay-body {
+      padding: 24px 32px 32px;
+    }
+    .mackay-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 4px;
+    }
+    .mackay-subtitle {
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+    .mackay-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .mackay-cat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--white);
+      user-select: none;
+    }
+    .mackay-cat:hover { border-color: var(--coral-light); background: var(--coral-bg); }
+    .mackay-cat.active {
+      border-color: var(--coral);
+      background: var(--coral-bg);
+      box-shadow: 0 0 0 3px rgba(242,97,63,0.1);
+    }
+    .mackay-cat-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9375rem;
+      flex-shrink: 0;
+    }
+    .mackay-cat-info { flex: 1; min-width: 0; }
+    .mackay-cat-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-800);
+    }
+    .mackay-cat-progress {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+    }
+    .mackay-bar-bg {
+      flex: 1;
+      height: 4px;
+      background: var(--gray-200);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .mackay-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .mackay-cat-pct {
+      font-size: 0.625rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      min-width: 28px;
+      text-align: right;
+    }
+
+    /* Category Detail Panel */
+    .mackay-detail {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 24px;
+      animation: slideIn 0.3s ease;
+      display: none;
+    }
+    .mackay-detail.active { display: block; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .mackay-detail-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .mackay-detail-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    .mackay-badge-earned {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      background: #FEF3C7;
+      color: #D97706;
+    }
+    .mackay-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .mackay-field { display: flex; flex-direction: column; gap: 4px; }
+    .mackay-field-label {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .mackay-field-value {
+      font-size: 0.8125rem;
+      color: var(--gray-800);
+      padding: 8px 12px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      min-height: 36px;
+      display: flex;
+      align-items: center;
+    }
+    .mackay-field-value.empty {
+      color: var(--gray-300);
+      border-style: dashed;
+      font-style: italic;
+      font-size: 0.75rem;
+    }
+    .mackay-field-value.filled {
+      border-color: var(--teal-light);
+      background: #F0FDFA;
+    }
+
+    /* MATH SECTION */
+    .math {
+      padding: 100px 0;
+      background: var(--gray-900);
+      color: var(--white);
+    }
+    .math .section-label {
+      text-align: center;
+      color: var(--coral-light);
+    }
+    .math h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .math > .container > p {
+      font-size: 1.0625rem;
+      color: var(--gray-400);
+      max-width: 540px;
+      margin: 0 auto 56px;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .math-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .math-card {
+      text-align: center;
+      padding: 32px 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+    }
+    .math-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--coral-light);
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .math-label {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      line-height: 1.5;
+    }
+    .math-highlight {
+      margin-top: 48px;
+      text-align: center;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(242,97,63,0.15), rgba(242,97,63,0.05));
+      border: 1px solid rgba(242,97,63,0.3);
+      border-radius: var(--radius);
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .math-highlight .math-value {
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+    .math-highlight p {
+      color: var(--gray-300);
+      font-size: 1rem;
+    }
+
+    /* 3R FRAMEWORK */
+    .framework {
+      padding: 100px 0;
+    }
+    .framework .section-label { text-align: center; }
+    .framework h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .framework > .container > p {
+      font-size: 1.0625rem;
+      color: var(--gray-500);
+      max-width: 560px;
+      margin: 0 auto 56px;
+      text-align: center;
+      line-height: 1.7;
+    }
+    .r-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .r-card {
+      padding: 36px 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--gray-200);
+      background: var(--white);
+      transition: all 0.2s;
+    }
+    .r-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .r-letter {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .r-card:nth-child(1) .r-letter { color: var(--coral); }
+    .r-card:nth-child(2) .r-letter { color: var(--orange); }
+    .r-card:nth-child(3) .r-letter { color: var(--teal); }
+    .r-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 10px;
+    }
+    .r-card p {
+      font-size: 0.9375rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* CTA BOTTOM */
+    .cta-bottom {
+      padding: 100px 0;
+      background: var(--coral-bg);
+      text-align: center;
+    }
+    .cta-bottom h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+    }
+    .cta-bottom p {
+      font-size: 1.0625rem;
+      color: var(--gray-500);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--gray-200);
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { padding: 120px 0 60px; }
+      .waitlist-form {
+        flex-direction: column;
+        border-radius: var(--radius);
+        padding: 16px;
+        gap: 10px;
+      }
+      .waitlist-form input { width: 100%; text-align: center; padding: 8px; }
+      .waitlist-form button { width: 100%; padding: 14px; }
+      .profile-header { flex-direction: column; text-align: center; padding: 20px 16px; }
+      .profile-scores { justify-content: center; }
+      .profile-meta { justify-content: center; }
+      .mackay-fields { grid-template-columns: 1fr; }
+      .mackay-categories { grid-template-columns: 1fr 1fr; }
+      .mackay-body { padding: 20px 16px 24px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .pillars { grid-template-columns: 1fr; }
+      .r-cards { grid-template-columns: 1fr; }
+      .math-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .mackay-categories { grid-template-columns: 1fr; }
+      .math-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Animations on scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container">
+      <div class="logo">HRM <span>| Human Relationship Manager</span></div>
+      <a href="#waitlist-top" class="nav-cta">Join Waitlist</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Coming soon for real estate agents
+      </div>
+      <h1>Your next 10 sales are already in <span class="accent">your database</span></h1>
+      <p>HRM is the relationship layer your CRM is missing. Stop grinding cold leads. Start activating the network you already have.</p>
+      <form class="waitlist-form" id="waitlist-top">
+        <input type="email" placeholder="Enter your email" required autocomplete="email">
+        <button type="submit">Join Waitlist</button>
+      </form>
+      <div class="waitlist-msg" id="msg-top"></div>
+      <div class="hero-social-proof">Built for established agents with 50+ contacts who are ready to work smarter.</div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="container">
+      <div class="section-label fade-up">The Problem</div>
+      <h2 class="fade-up">You don't have a lead problem. You have a relationship problem.</h2>
+      <p class="fade-up">Most agents have databases full of people who trust them and would refer them &mdash; if they remembered them.</p>
+      <div class="pain-grid">
+        <div class="pain-card fade-up">
+          <div class="pain-icon">&#128566;</div>
+          <h3>Past clients list with others</h3>
+          <p>Not because you lack skill, but because you weren't top of mind when it mattered.</p>
+        </div>
+        <div class="pain-card fade-up">
+          <div class="pain-icon">&#128200;</div>
+          <h3>Boom-bust income cycles</h3>
+          <p>One month is strong, the next feels tight. You fall back into grinding expensive, low-quality leads.</p>
+        </div>
+        <div class="pain-card fade-up">
+          <div class="pain-icon">&#128187;</div>
+          <h3>Your CRM collects dust</h3>
+          <p>It manages transactions and pipelines &mdash; not the depth of human relationships.</p>
+        </div>
+        <div class="pain-card fade-up">
+          <div class="pain-icon">&#127922;</div>
+          <h3>Referrals happen by accident</h3>
+          <p>No cadence, no tracking, no system. Just hope that someone remembers your name.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION PILLARS -->
+  <section class="solution">
+    <div class="container">
+      <div class="section-label fade-up">The Solution</div>
+      <h2 class="fade-up">Three engines that turn relationships into revenue</h2>
+      <p class="fade-up">HRM installs a system &mdash; not just another app. Opinionated about methodology, flexible in execution.</p>
+      <div class="pillars">
+        <div class="pillar fade-up">
+          <div class="pillar-number">1</div>
+          <h3>Contact Depth Engine</h3>
+          <p>Build deep knowledge about every person in your network using a proven 66-point profiling framework. Know their kids' names, their hobbies, what matters to them.</p>
+        </div>
+        <div class="pillar fade-up">
+          <div class="pillar-number">2</div>
+          <h3>Cadence Engine</h3>
+          <p>27&ndash;36 meaningful touchpoints per year across calls, emails, mail, social, events, and gifts. Know exactly who to reach out to, when, and how.</p>
+        </div>
+        <div class="pillar fade-up">
+          <div class="pillar-number">3</div>
+          <h3>ROI Dashboard</h3>
+          <p>Track the metric that matters most: your database return rate. For every 100 advocates, you should generate 10&ndash;20 transactions per year. HRM makes the invisible work visible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DEMO -->
+  <section class="demo">
+    <div class="container">
+      <div class="section-label fade-up">See It In Action</div>
+      <h2 class="fade-up">Know your people like never before</h2>
+      <p class="fade-up">Click a category below to explore how HRM profiles every relationship &mdash; turning acquaintances into advocates.</p>
+
+      <div class="app-shell fade-up">
+        <!-- Titlebar -->
+        <div class="app-titlebar">
+          <div class="app-dot r"></div>
+          <div class="app-dot y"></div>
+          <div class="app-dot g"></div>
+          <div class="app-titlebar-text">HRM &mdash; Contact Profile</div>
+          <div style="width: 36px;"></div>
+        </div>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <div class="profile-avatar">SR</div>
+          <div class="profile-info">
+            <h3>Sarah Richardson</h3>
+            <div class="profile-meta">
+              <span class="profile-badge badge-advocacy">&#11088; Advocate</span>
+              <span class="profile-badge badge-segment">Buyer / Seller</span>
+              <span style="font-size: 0.75rem; color: var(--gray-400);">Last touched 3 days ago</span>
+            </div>
+          </div>
+          <div class="profile-scores">
+            <div>
+              <div class="score-ring">
+                <svg viewBox="0 0 56 56">
+                  <circle cx="28" cy="28" r="24" fill="none" stroke="#E5E5E5" stroke-width="4"/>
+                  <circle cx="28" cy="28" r="24" fill="none" stroke="#22C55E" stroke-width="4" stroke-dasharray="150.8" stroke-dashoffset="22.6" stroke-linecap="round"/>
+                </svg>
+                <span class="value">85</span>
+              </div>
+              <div class="score-label">Health</div>
+            </div>
+            <div>
+              <div class="score-ring">
+                <svg viewBox="0 0 56 56">
+                  <circle cx="28" cy="28" r="24" fill="none" stroke="#E5E5E5" stroke-width="4"/>
+                  <circle cx="28" cy="28" r="24" fill="none" stroke="#F2613F" stroke-width="4" stroke-dasharray="150.8" stroke-dashoffset="52.8" stroke-linecap="round"/>
+                </svg>
+                <span class="value">65%</span>
+              </div>
+              <div class="score-label">Profile</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mackay 66 Body -->
+        <div class="mackay-body">
+          <div class="mackay-title">Mackay 66 Profile</div>
+          <div class="mackay-subtitle">Click a category to explore &mdash; the deeper you know them, the stronger the relationship.</div>
+
+          <!-- Category Tabs -->
+          <div class="mackay-categories">
+            <div class="mackay-cat active" data-cat="family">
+              <div class="mackay-cat-icon" style="background: #FFF5F2; color: #F2613F;">&#128106;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">Family</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 80%; background: #F2613F;"></div></div>
+                  <div class="mackay-cat-pct">80%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mackay-cat" data-cat="personal">
+              <div class="mackay-cat-icon" style="background: #F5F3FF; color: #8B5CF6;">&#128100;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">Personal</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 60%; background: #8B5CF6;"></div></div>
+                  <div class="mackay-cat-pct">60%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mackay-cat" data-cat="business">
+              <div class="mackay-cat-icon" style="background: #EFF6FF; color: #2563EB;">&#128188;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">Business</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 45%; background: #2563EB;"></div></div>
+                  <div class="mackay-cat-pct">45%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mackay-cat" data-cat="interests">
+              <div class="mackay-cat-icon" style="background: #F0FDFA; color: #0D9488;">&#127928;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">Interests</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 70%; background: #0D9488;"></div></div>
+                  <div class="mackay-cat-pct">70%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mackay-cat" data-cat="lifestyle">
+              <div class="mackay-cat-icon" style="background: #FFFBEB; color: #D97706;">&#9749;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">Lifestyle</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 50%; background: #D97706;"></div></div>
+                  <div class="mackay-cat-pct">50%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mackay-cat" data-cat="education">
+              <div class="mackay-cat-icon" style="background: #FDF2F8; color: #EC4899;">&#127891;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">Education</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 40%; background: #EC4899;"></div></div>
+                  <div class="mackay-cat-pct">40%</div>
+                </div>
+              </div>
+            </div>
+            <div class="mackay-cat" data-cat="you-them">
+              <div class="mackay-cat-icon" style="background: #ECFDF5; color: #059669;">&#129309;</div>
+              <div class="mackay-cat-info">
+                <div class="mackay-cat-name">You &amp; Them</div>
+                <div class="mackay-cat-progress">
+                  <div class="mackay-bar-bg"><div class="mackay-bar-fill" style="width: 55%; background: #059669;"></div></div>
+                  <div class="mackay-cat-pct">55%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail Panels (one per category, toggled via JS) -->
+          <div class="mackay-detail active" data-detail="family">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #F2613F;">&#128106; Family</div>
+              <div class="mackay-badge-earned">&#127942; Knows Their Family</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">Spouse Name</div>
+                <div class="mackay-field-value filled">Michael Richardson</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Anniversary</div>
+                <div class="mackay-field-value filled">June 14, 2012</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Spouse Interests</div>
+                <div class="mackay-field-value filled">Gardening, book club</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Child 1</div>
+                <div class="mackay-field-value filled">Emma, 14 &mdash; loves volleyball</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Child 2</div>
+                <div class="mackay-field-value filled">Jake, 11 &mdash; into robotics</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Spouse Education</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mackay-detail" data-detail="personal">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #8B5CF6;">&#128100; Personal</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">Nickname</div>
+                <div class="mackay-field-value filled">Sar</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Birthday</div>
+                <div class="mackay-field-value filled">March 22, 1985</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Hometown</div>
+                <div class="mackay-field-value filled">Edmonton, AB</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Height</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Weight</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mackay-detail" data-detail="business">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #2563EB;">&#128188; Business</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">Occupation</div>
+                <div class="mackay-field-value filled">Marketing Director</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Company</div>
+                <div class="mackay-field-value filled">Apex Media Group</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Previous Role</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Business Goal</div>
+                <div class="mackay-field-value filled">VP of Marketing by 2027</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Greatest Concern</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Professional Assoc.</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mackay-detail" data-detail="interests">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #0D9488;">&#127928; Interests</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">Hobbies</div>
+                <div class="mackay-field-value filled">Hiking, photography</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Vacation Style</div>
+                <div class="mackay-field-value filled">Cabin trips, national parks</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Community</div>
+                <div class="mackay-field-value filled">Volunteers at food bank</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Political</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Religion</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Strong Feelings</div>
+                <div class="mackay-field-value filled">Sustainability, local food</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mackay-detail" data-detail="lifestyle">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #D97706;">&#9749; Lifestyle</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">Fav. Restaurant</div>
+                <div class="mackay-field-value filled">The Workshop Eatery</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Fav. Coffee Spot</div>
+                <div class="mackay-field-value filled">Transcend Coffee</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Drinks Alcohol</div>
+                <div class="mackay-field-value filled">Red wine, occasionally</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Dietary Notes</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Health Notes</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mackay-detail" data-detail="education">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #EC4899;">&#127891; Education</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">College</div>
+                <div class="mackay-field-value filled">University of Alberta</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Degree</div>
+                <div class="mackay-field-value filled">B.Comm, Marketing</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Year</div>
+                <div class="mackay-field-value filled">2007</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">High School</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Activities</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mackay-detail" data-detail="you-them">
+            <div class="mackay-detail-header">
+              <div class="mackay-detail-title" style="color: #059669;">&#129309; You &amp; Them</div>
+            </div>
+            <div class="mackay-fields">
+              <div class="mackay-field">
+                <div class="mackay-field-label">How You Met</div>
+                <div class="mackay-field-value filled">Sold them their first home, 2018</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">What They Value</div>
+                <div class="mackay-field-value filled">Honesty, quick responses</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Proudest Achievement</div>
+                <div class="mackay-field-value filled">Started her own side business</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Personal Goal</div>
+                <div class="mackay-field-value empty">Not yet discovered</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">How to Impress</div>
+                <div class="mackay-field-value filled">Remember the details</div>
+              </div>
+              <div class="mackay-field">
+                <div class="mackay-field-label">Conversation Topics</div>
+                <div class="mackay-field-value filled">Kids' activities, hiking trails</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERRAL MATH -->
+  <section class="math">
+    <div class="container">
+      <div class="section-label fade-up">The Math</div>
+      <h2 class="fade-up">Every relationship has a dollar value</h2>
+      <p class="fade-up">It costs 5&ndash;7x more to acquire a new client than to maintain an existing one. Here's what your database is actually worth.</p>
+      <div class="math-grid fade-up">
+        <div class="math-card">
+          <div class="math-value">100</div>
+          <div class="math-label">Advocates in<br>your database</div>
+        </div>
+        <div class="math-card">
+          <div class="math-value">15</div>
+          <div class="math-label">Transactions per<br>year from database</div>
+        </div>
+        <div class="math-card">
+          <div class="math-value">15%</div>
+          <div class="math-label">Database<br>return rate</div>
+        </div>
+      </div>
+      <div class="math-highlight fade-up">
+        <div class="math-value">$2,250</div>
+        <p>Value of every single advocate in your database, per year</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3R FRAMEWORK -->
+  <section class="framework">
+    <div class="container">
+      <div class="section-label fade-up">The Framework</div>
+      <h2 class="fade-up">Relevant. Remarkable. Remembered.</h2>
+      <p class="fade-up">Every feature in HRM serves one or more of the three pillars of referral-worthy relationships.</p>
+      <div class="r-cards">
+        <div class="r-card fade-up">
+          <div class="r-letter">R</div>
+          <h3>Relevant</h3>
+          <p>Do you understand what's happening in their life? Are your communications timely and personalized based on what you actually know about them?</p>
+        </div>
+        <div class="r-card fade-up">
+          <div class="r-letter">R</div>
+          <h3>Remarkable</h3>
+          <p>Are you delivering unexpected value? Are you doing things that make people talk about you to their friends and colleagues?</p>
+        </div>
+        <div class="r-card fade-up">
+          <div class="r-letter">R</div>
+          <h3>Remembered</h3>
+          <p>When someone in their circle mentions real estate, do they think of you first? Is your visibility consistent enough to maintain top-of-mind presence?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="cta-bottom">
+    <div class="container">
+      <h2 class="fade-up">Ready to activate your database?</h2>
+      <p class="fade-up">Join the waitlist and be the first to turn your relationships into predictable referral income.</p>
+      <form class="waitlist-form fade-up" id="waitlist-bottom" style="margin: 0 auto;">
+        <input type="email" placeholder="Enter your email" required autocomplete="email">
+        <button type="submit">Join Waitlist</button>
+      </form>
+      <div class="waitlist-msg" id="msg-bottom"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 HRM &mdash; Human Relationship Manager. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================
+    // MACKAY 66 CATEGORY SWITCHING
+    // ============================================
+    document.querySelectorAll('.mackay-cat').forEach(function(catEl) {
+      catEl.addEventListener('click', function() {
+        var catName = this.getAttribute('data-cat');
+
+        // Update active tab
+        document.querySelectorAll('.mackay-cat').forEach(function(el) {
+          el.classList.remove('active');
+        });
+        this.classList.add('active');
+
+        // Update active detail panel
+        document.querySelectorAll('.mackay-detail').forEach(function(el) {
+          el.classList.remove('active');
+          el.style.animation = 'none';
+        });
+        var target = document.querySelector('.mackay-detail[data-detail="' + catName + '"]');
+        if (target) {
+          // Force reflow to restart animation
+          void target.offsetWidth;
+          target.style.animation = '';
+          target.classList.add('active');
+        }
+      });
+    });
+
+    // ============================================
+    // WAITLIST FORM (Supabase-ready)
+    // ============================================
+
+    // TODO: Replace with your Supabase credentials
+    var SUPABASE_URL = '';  // e.g. 'https://xxxx.supabase.co'
+    var SUPABASE_ANON_KEY = '';  // e.g. 'eyJhbG...'
+
+    function showMsg(el, text, type) {
+      el.textContent = text;
+      el.className = 'waitlist-msg ' + type;
+      setTimeout(function() {
+        el.textContent = '';
+        el.className = 'waitlist-msg';
+      }, 5000);
+    }
+
+    function handleWaitlist(form, msgEl) {
+      var email = form.querySelector('input[type="email"]').value.trim();
+      var btn = form.querySelector('button');
+
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Joining...';
+
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ email: email, created_at: new Date().toISOString() })
+        }).then(function(res) {
+          if (res.ok || res.status === 201) {
+            showMsg(msgEl, "You're on the list! We'll be in touch soon.", 'success');
+            form.querySelector('input').value = '';
+          } else if (res.status === 409) {
+            showMsg(msgEl, "You're already on the list! We'll be in touch.", 'success');
+          } else {
+            showMsg(msgEl, 'Something went wrong. Please try again.', 'error');
+          }
+          btn.disabled = false;
+          btn.textContent = 'Join Waitlist';
+        }).catch(function() {
+          showMsg(msgEl, 'Something went wrong. Please try again.', 'error');
+          btn.disabled = false;
+          btn.textContent = 'Join Waitlist';
+        });
+      } else {
+        // Demo mode
+        setTimeout(function() {
+          showMsg(msgEl, "You're on the list! We'll be in touch soon.", 'success');
+          form.querySelector('input').value = '';
+          btn.disabled = false;
+          btn.textContent = 'Join Waitlist';
+        }, 800);
+      }
+    }
+
+    document.getElementById('waitlist-top').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleWaitlist(this, document.getElementById('msg-top'));
+    });
+
+    document.getElementById('waitlist-bottom').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleWaitlist(this, document.getElementById('msg-bottom'));
+    });
+
+    // ============================================
+    // SCROLL ANIMATIONS
+    // ============================================
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(function(el) {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
